@@ -12,6 +12,15 @@
     .ab-player.active .ab-player-button-a.active, .ab-player.active .ab-player-button-b.active {
       color: green;
     }
+    .ab-player.loading .ab-player-button-a, .ab-player.loading .ab-player-button-b {
+      display: none;
+    }
+    .ab-player .ab-player-loading {
+      display: none;
+    }
+    .ab-player.loading .ab-player-loading {
+      display: block;
+    }
     </style>
   </head>
   <body>
@@ -22,6 +31,7 @@
         data-formats="mp3">
         <button class="ab-player-button-a">A</button>
         <button class="ab-player-button-b">B</button>
+        <div class="ab-player-loading">loading...</div>
       </div>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
