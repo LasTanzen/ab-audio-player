@@ -3,18 +3,33 @@ $(function() {
   $('.ab-player').each(function(index, player) {
     var track = {};
     var fileFormats = $(player).data('formats').replace(' ', '').split(',');
+    var $that = $(this);
 
     var trackWithFormats = [];
     $(fileFormats).each(function(indes, format) {
       trackWithFormats.push($(player).data('track-a').concat('.', format));
     });
-    track.a = new Howl({urls: trackWithFormats});
+    track.a = new Howl({
+      urls: trackWithFormats,
+      onend: function() {
+        track.a.mute();
+        track.b.mute();
+        track.audible = 'none';
+        $that.removeClass('active');
+        $that.find('.ab-player-button-a').removeClass('active');
+      }
+    });
 
     trackWithFormats = [];
     $(fileFormats).each(function(indes, format) {
       trackWithFormats.push($(player).data('track-b').concat('.', format));
     });
-    track.b = new Howl({urls: trackWithFormats});
+    track.b = new Howl({
+      urls: trackWithFormats,
+      onend: function() {
+        $that.find('.ab-player-button-a').removeClass('active');
+      }
+    });
 
     track.a.mute();
     track.b.mute();
@@ -28,6 +43,8 @@ $(function() {
           track.a.unmute();
           track.b.mute();
           track.audible = 'a';
+          $that.addClass('active');
+          $(this).addClass('active');
           break;
         case 'a':
           track.a.pause();
@@ -35,11 +52,16 @@ $(function() {
           track.a.mute();
           track.b.mute();
           track.audible = 'none';
+          $that.removeClass('active');
+          $(this).removeClass('active');
           break;
         case 'b':
           track.a.unmute();
           track.b.mute();
           track.audible = 'a';
+          $that.addClass('active');
+          $that.find('.ab-player-button-b').removeClass('active');
+          $(this).addClass('active');
           break;
       }
     });
@@ -52,6 +74,8 @@ $(function() {
           track.a.mute();
           track.b.unmute();
           track.audible = 'b';
+          $that.addClass('active');
+          $(this).addClass('active');
           break;
         case 'b':
           track.a.pause();
@@ -59,11 +83,16 @@ $(function() {
           track.a.mute();
           track.b.mute();
           track.audible = 'none';
+          $that.removeClass('active');
+          $(this).removeClass('active');
           break;
         case 'a':
           track.b.unmute();
           track.a.mute();
           track.audible = 'b';
+          $that.addClass('active');
+          $that.find('.ab-player-button-a').removeClass('active');
+          $(this).addClass('active');
           break;
       }
     });
