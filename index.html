@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A-B Vergleich</title>
+    <style>
+    .ab-player.active .ab-player-button-a, .ab-player.active .ab-player-button-b {
+      color: blue;
+    }
+    .ab-player.active .ab-player-button-a.active, .ab-player.active .ab-player-button-b.active {
+      color: green;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="ab-player" data-track-a="/audio/sample_1_a" data-track-b="/audio/sample_1_b" data-formats="mp3, ogg">
+        <button class="ab-player-button-a">A</button>
+        <button class="ab-player-button-b">B</button>
+      </div>
+      <div class="ab-player" data-track-a="/audio/sample_2_a" data-track-b="/audio/sample_2_b" data-formats="mp3, ogg">
+        <button class="ab-player-button-a">A</button>
+        <button class="ab-player-button-b">B</button>
+      </div>
+    </div>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/howler.js/howler.min.js"></script>
+    <script src="ab-player.js"></script>
+  </body>
+</html>
