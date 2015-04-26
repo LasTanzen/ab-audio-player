@@ -98,5 +98,22 @@ $(function() {
     });
 
     tracks.push(track);
+
+    $that.addClass('loading');
+    track.a.loaded = false;
+    track.b.loaded = false;
+
+    $.get(track.a._src, function() {
+      track.a.loaded = true;
+      if(track.b.loaded)
+        $that.removeClass('loading');
+    });
+
+    $.get(track.b._src, function() {
+      track.b.loaded = true;
+      if(track.a.loaded)
+        $that.removeClass('loading');
+    });
+
   });
 });
