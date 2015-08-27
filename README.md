@@ -4,7 +4,7 @@ Simple audio player for a/b comparision based on howler.js and jquery
 ## Dependencies
 [jQuery](https://github.com/jquery/jquery), [howler](https://github.com/goldfire/howler.js/)
 
-or user bower
+or use bower
 
 ## Usage
 - Include ab-player.js and dependencies
